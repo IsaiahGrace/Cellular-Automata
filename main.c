@@ -6,7 +6,7 @@
 #include <sys/ioctl.h>
 #include <termios.h>
 
-//#define COLOR
+#define COLOR
 #ifdef COLOR
 #define RED     "\x1b[31m"
 #define GREEN   "\x1b[32m"
@@ -74,7 +74,7 @@ int main(int argc, char **argv) {
       if(i == 0 || j == 0 || i == (height - 1) || j == (width - 1)) {
       map[i][j] = 0;
     } else {
-      map[i][j] = 0; //(rand() & 1);
+	map[i][j] = 0; //(rand() & 1);
     }
       next[i][j] = 0;
       prev[i][j] = 0;
@@ -93,7 +93,7 @@ int main(int argc, char **argv) {
   */
 
   //Hardcode a glider gun
-
+  /*
   map[6][2] = 1;
   map[7][2] = 1;
   map[6][3] = 1;
@@ -135,7 +135,7 @@ int main(int argc, char **argv) {
   map[5][36] = 1;
   map[4][37] = 1;
   map[5][37] = 1;
-
+  */
 
   //Start LIFE
   for(k = 0; k < 1000; k++) {
@@ -183,10 +183,67 @@ int main(int argc, char **argv) {
         if(map[i - 1][j]) {crowd++;}
 
         //Update next with values
-        if(crowd < 2) {next[i][j] = 0;}
-        if(crowd == 2 && map[i][j]) {next[i][j] = 1;}
-        if(crowd == 3) {next[i][j] = 1;}
-        if(crowd > 3) {next[i][j] = 0;}
+	if(map[i][j]) {
+	  switch(crowd) {
+	  case 0:
+	    next[i][j] = 0;
+	    break;
+	  case 1:
+	    next[i][j] = 1;
+	    break;
+	  case 2:
+	    next[i][j] = 1;
+	    break;
+	  case 3:
+	    next[i][j] = 1;
+	    break;
+	  case 4:
+	    next[i][j] = 1;
+	    break;
+	  case 5:
+	    next[i][j] = 1;
+	    break;
+	  case 6:
+	    next[i][j] = 0;
+	    break;
+	  case 7:
+	    next[i][j] = 0;
+	    break;
+	  case 8:
+	    next[i][j] = 0;
+	    break;
+	  }
+	} else {
+	  switch(crowd) {
+	  case 0:
+	    next[i][j] = 0;
+	    break;
+	  case 1:
+	    next[i][j] = 0;
+	    break;
+	  case 2:
+	    next[i][j] = 0;
+	    break;
+	  case 3:
+	    next[i][j] = 1;
+	    break;
+	  case 4:
+	    next[i][j] = 0;
+	    break;
+	  case 5:
+	    next[i][j] = 0;
+	    break;
+	  case 6:
+	    next[i][j] = 0;
+	    break;
+	  case 7:
+	    next[i][j] = 0;
+	    break;
+	  case 8:
+	    next[i][j] = 0;
+	    break;
+	  }
+	}
       }
     }
 
