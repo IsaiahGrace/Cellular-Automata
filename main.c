@@ -77,7 +77,7 @@ int main(int argc, char **argv) {
       if(i == 0 || j == 0 || i == (height - 1) || j == (width - 1)) {
         map[i][j] = 0;
       } else {
-        map[i][j] = 0; //(rand() & 1);
+        map[i][j] = (rand() & 15);
       }
       next[i][j] = 0;
       prev[i][j] = 0;
@@ -86,7 +86,7 @@ int main(int argc, char **argv) {
   }
   printf("\033[1A");
 
-  //make a sqare in the middle
+  //make a square in the middle
   //map[height / 2][width / 2] = 1;
 
   //Hardcode a glider
@@ -100,7 +100,7 @@ int main(int argc, char **argv) {
 
   //Hardcode a glider gun
   {
-
+    /*
     map[6][2] = 1;
     map[7][2] = 1;
     map[6][3] = 1;
@@ -142,7 +142,7 @@ int main(int argc, char **argv) {
     map[5][36] = 1;
     map[4][37] = 1;
     map[5][37] = 1;
-
+    */
   }
 
   //Start LIFE
@@ -280,7 +280,7 @@ int main(int argc, char **argv) {
   map[height / 2][width / 2] = 2;
 
   //Fill in Maze
-  for(k = 0; k < 1000; k++) {
+  while(alive) {
     //Print Map as is
     alive = 0;
     for(i = 0; i < height - 1; i++) {
@@ -371,6 +371,7 @@ int main(int argc, char **argv) {
     usleep(10000);
   }
 
+/*
     usleep(5000000);
     for(i = 0; i < height - 1; i++) {
       printf("\033[1A");
@@ -386,7 +387,7 @@ int main(int argc, char **argv) {
       }
       printf("\n");
     }
-
+*/
   //Free malloc'd memory
   for(i = 0; i < height; i++) {
     free(map[i]);
